@@ -193,7 +193,6 @@ int permute(int cities[], int l, int r, int len, int currWeight, pNode head, int
 }
 
 void TSP_cmd(pNode head){
-//    printf("Doing T function\n");
     char numOfCities = 0;
     scanf(" %c",&numOfCities);
     int cities[(int)numOfCities-48];
@@ -204,6 +203,7 @@ void TSP_cmd(pNode head){
     }
     int ans[(int)numOfCities-48];
     int totalWeight = permute(cities,0,(int)numOfCities-48-1,(int)numOfCities-48,1000000,head,ans);
-    printf("TSP shortest path: %d \n",totalWeight);
+    printf("TSP shortest path: %d \n",totalWeight); //NEED TO SEE WHAT HAPPENS WHEN NO PATH
+    return;
 }
 
