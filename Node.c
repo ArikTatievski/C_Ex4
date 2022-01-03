@@ -46,7 +46,6 @@ void removeNodeFromList(pNode head,int key){
     if(temp->id==key){
         if (temp->next == NULL){
             head->next=NULL;
-            removeOutEdges(head,key);
             return;
         }
         else{
@@ -56,7 +55,6 @@ void removeNodeFromList(pNode head,int key){
             }
             head->next=temp->next;
             free(temp);
-            removeOutEdges(head,key);
             return;
         }
     } else{
@@ -69,7 +67,6 @@ void removeNodeFromList(pNode head,int key){
                 }
                 temp->next=checker->next;
                 free(checker);
-                removeOutEdges(head,key);
                 return;
             }
             temp=temp->next;

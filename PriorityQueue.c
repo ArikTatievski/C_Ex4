@@ -27,7 +27,6 @@ pQueue createPriortyQueue(){
 void insert_by_priority(pQueue queue, pNode n){
     if (queue->rear >= MAX - 1)
     {
-        printf("\nQueue overflow no more elements can be inserted");
         return;
     }
     if ((queue->front == -1) && (queue->rear == -1))
@@ -71,7 +70,6 @@ pNode deleteByPriority(pQueue queue){
         return temp;
     }
     if ((queue->front==-1) && (queue->rear==-1)){
-        printf("\nQueue is empty no elements to delete");
         return NULL;
     }
     for (i = 0; i <= queue->rear ; i++) {
@@ -96,18 +94,6 @@ pNode deleteByPriority(pQueue queue){
     return temp;
 }
 
-/* Function to display queue elements */
-void displayQueue(pQueue queue)
-{
-    if ((queue->front == -1) && (queue->rear == -1)){
-        printf("\nQueue is empty");
-        return;
-    }
-    for (; queue->front <= queue->rear; queue->front++){
-        printf(" %d ", queue->pri_que[queue->front]->id);
-    }
-    queue->front = 0;
-}
 int isEmpty(pQueue queue){
     if (queue->rear==-1){
         return 1;

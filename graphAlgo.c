@@ -2,17 +2,21 @@
 #include <string.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <math.h>
 #include "Graph.h"
 #include "PriorityQueue.h"
 
 void deleteGraph_cmd(pNode head){
     pNode p = head->next;
     while(p){
-        removeNodeFromList(head,p->id);
+        int key = p->id;
+        removeNodeFromList(head,key);
+        removeOutEdges(head,key);
     }
 }
 
 char build_graph_cmd(pNode head){
+//    printf("Doing A function\n");
     deleteGraph_cmd(head);
     char numOfNodes;
     char currNode;
@@ -38,6 +42,7 @@ char build_graph_cmd(pNode head){
 }
 
 char insert_node_cmd(pNode head){
+//    printf("Doing B function\n");
     char currNode;
     scanf(" %c",&currNode);
     if (getNode(head,(int)currNode-48) != NULL) {
@@ -52,15 +57,17 @@ char insert_node_cmd(pNode head){
         }
         else{
             scanf(" %c",&tar2);
-            edgeAddToList(getNode(head,currNode),(int)tar2-48,(int)tar1-48);
+            edgeAddToList(getNode(head,(int)currNode-48),(int)tar2-48,(int)tar1-48);
         }
     }
     return tar1;
 }
 void delete_node_cmd(pNode head){
+//    printf("Doing D function\n");
     int id = 0;
     scanf(" %d",&id);
     removeNodeFromList(head,id);
+    removeOutEdges(head,id);
     return;
 }
 
@@ -69,7 +76,6 @@ void relax(pNode head,pEdge e, int src){
     pNode vd= getNode(head,e->dest);
     int weight_src= vs->wSoFar;
     weight_src=weight_src+e->weight;
-    weight_src= abs(weight_src);
     int weight_dest= vd->wSoFar;
     if (weight_src<0){
         return;
@@ -118,6 +124,7 @@ void dijsktra (pNode head,int key){
 }
 
 void shortsPath_cmd(pNode head) {
+//    printf("Doing S function\n");
     int src = 0;
     int dest = 0;
     scanf(" %d",&src);
@@ -125,12 +132,12 @@ void shortsPath_cmd(pNode head) {
     int counter = 0;
     int weight = 0;
     if (src == dest) {
-        printf("-1\n");
+        printf("Dijsktra shortest path: -1 \n");
         return;
     }
     pNode checker = getNode(head, src);
     if (checker->firstEdge == NULL) {
-        printf("-1");
+        printf("Dijsktra shortest path: -1 ");
         return;
     }
     dijsktra(head, src);
@@ -141,7 +148,7 @@ void shortsPath_cmd(pNode head) {
     }
     temp = getNode(head, dest);
     if (counter == 0) {
-        printf("-1\n");
+        printf("Dijsktra shortest path: -1 \n");
         return;
     }
     temp = getNode(head, dest);
@@ -186,6 +193,7 @@ int permute(int cities[], int l, int r, int len, int currWeight, pNode head, int
 }
 
 void TSP_cmd(pNode head){
+//    printf("Doing T function\n");
     char numOfCities = 0;
     scanf(" %c",&numOfCities);
     int cities[(int)numOfCities-48];

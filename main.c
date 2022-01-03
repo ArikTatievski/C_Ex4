@@ -24,5 +24,7 @@ int main() {
             TSP_cmd(graph);
         }
     }
+    deleteGraph_cmd(graph);
+    free(graph);
     return 0;
 }
