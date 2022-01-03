@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <math.h>
+#include <limits.h>
 #include "Graph.h"
 #include "PriorityQueue.h"
 
@@ -96,7 +96,7 @@ void dijsktra (pNode head,int key){
             continue;
         }
         temp->father=NULL;
-        temp->wSoFar=INFINITY;
+        temp->wSoFar=INT_MAX;
         insert_by_priority(queue,temp);//put in to queue
         temp=temp->next;
     }
@@ -140,11 +140,11 @@ void shortsPath_cmd(pNode head) {
         temp = temp->father;
     }
     temp = getNode(head, dest);
-    int arr[counter];
-    for (int i = counter - 1; i >= 0; i--) {
-        arr[i] = temp->father->id;
-        temp = temp->father;
-    }
+//    int arr[counter];
+//    for (int i = counter - 1; i >= 0; i--) {
+//        arr[i] = temp->father->id;
+//        temp = temp->father;
+//    }
     if (counter == 0) {
         printf("-1\n");
         return;
@@ -166,9 +166,9 @@ void swap(int *x, int *y){
 int permute(int cities[], int l, int r, int len, int currWeight, pNode head, int ans[]){
     if (l == r) {
         int newWeight = 0;
-        dijsktra(head,cities[0]);
-        for(int j=1;j<len;j++){
-            newWeight = newWeight + (getNode(head,cities[j])->wSoFar);
+        for(int j=0;j<len-1;j++){
+            dijsktra(head,cities[j]);
+            newWeight = newWeight + (getNode(head,cities[j+1])->wSoFar);
         }
         if(newWeight<currWeight){
             for(int j=0;j<len;j++){

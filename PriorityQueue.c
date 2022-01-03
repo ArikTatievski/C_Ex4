@@ -3,7 +3,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include "math.h"
+#include <math.h>
 #include "Graph.h"
 #include "PriorityQueue.h"
 #define MAX 1000
@@ -17,7 +17,7 @@ void displayQueue(pQueue queue);
 
 ///* Function to create an empty priority queue */
 pQueue createPriortyQueue(){
-    priorityQueue *queue= (pQueue*)malloc(sizeof(priorityQueue));
+    priorityQueue *queue= (pQueue)malloc(sizeof(priorityQueue));
     queue->rear=-1;
     queue->front =-1;
     return queue;
@@ -62,7 +62,7 @@ pNode deleteByPriority(pQueue queue){
     int i;
     pNode temp;
     int flag=0;
-    int min_weigh=INFINITY;
+    int min_weigh=2147483647;
     int indexOfmin=-1;
     if (queue->rear==0){ //there is only one node in the queue
         temp=queue->pri_que[queue->rear];
