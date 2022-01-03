@@ -140,18 +140,13 @@ void shortsPath_cmd(pNode head) {
         temp = temp->father;
     }
     temp = getNode(head, dest);
-//    int arr[counter];
-//    for (int i = counter - 1; i >= 0; i--) {
-//        arr[i] = temp->father->id;
-//        temp = temp->father;
-//    }
     if (counter == 0) {
         printf("-1\n");
         return;
     }
     temp = getNode(head, dest);
     weight = temp->wSoFar;
-    printf("Dijsktra shortest path: %d\n", weight);
+    printf("Dijsktra shortest path: %d \n", weight);
     return;
 
 }
@@ -201,6 +196,6 @@ void TSP_cmd(pNode head){
     }
     int ans[(int)numOfCities-48];
     int totalWeight = permute(cities,0,(int)numOfCities-48-1,(int)numOfCities-48,1000000,head,ans);
-    printf("TSP shortest path: %d\n",totalWeight);
+    printf("TSP shortest path: %d \n",totalWeight);
 }
 
