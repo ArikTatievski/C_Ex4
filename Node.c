@@ -45,6 +45,11 @@ void removeNodeFromList(pNode head,int key){
     }
     if(temp->id==key){
         if (temp->next == NULL){
+            pEdge e = temp->firstEdge;
+            while (e){
+                removeEdgeFromList(temp,e->dest);
+                e=e->next;
+            }
             head->next=NULL;
             return;
         }

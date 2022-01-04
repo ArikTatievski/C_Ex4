@@ -28,13 +28,18 @@ int main() {
             if(ch == 'T') {
                 TSP_cmd(graph);
                 break;
-            } else{
+            }
+            else{
                 break;
             }
         }
-
     }
-    deleteGraph_cmd(graph);
+    pNode delNode = graph->next;
+    while (delNode){
+        pNode curr = delNode->next;
+        removeNodeFromList(graph,delNode->id);
+        delNode = curr;
+    }
     free(graph);
     return 0;
 }
