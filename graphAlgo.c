@@ -12,11 +12,11 @@ void deleteGraph_cmd(pNode head){
         int key = p->id;
         removeNodeFromList(head,key);
         removeOutEdges(head,key);
+        p=p->next;
     }
 }
 
 char build_graph_cmd(pNode head){
-//    printf("Doing A function\n");
     deleteGraph_cmd(head);
     char numOfNodes;
     char currNode;
@@ -42,7 +42,6 @@ char build_graph_cmd(pNode head){
 }
 
 char insert_node_cmd(pNode head){
-//    printf("Doing B function\n");
     char currNode;
     scanf(" %c",&currNode);
     if (getNode(head,(int)currNode-48) != NULL) {
@@ -63,7 +62,6 @@ char insert_node_cmd(pNode head){
     return tar1;
 }
 void delete_node_cmd(pNode head){
-//    printf("Doing D function\n");
     int id = 0;
     scanf(" %d",&id);
     removeNodeFromList(head,id);
@@ -125,7 +123,6 @@ void dijsktra (pNode head,int key){
 }
 
 void shortsPath_cmd(pNode head) {
-//    printf("Doing S function\n");
     int src = 0;
     int dest = 0;
     scanf(" %d",&src);
@@ -204,7 +201,6 @@ int permute(int cities[], int l, int r, int len, int currWeight, pNode head, int
 }
 
 void TSP_cmd(pNode head){
-//    printf("T\n");
     char numOfCities = 0;
     scanf(" %c",&numOfCities);
     int cities[(int)numOfCities-48];
@@ -213,38 +209,6 @@ void TSP_cmd(pNode head){
         scanf(" %c",&k);
         cities[i] = (int)k-48;
     }
-//    if((int)numOfCities-48 == 2){
-//        int min1;
-//        int min2;
-//        if(getNode(head,cities[0])->firstEdge == NULL){
-//            min1 = INT_MAX;
-//        } else{
-//            dijsktra(head,cities[0]);
-//            min1 = getNode(head,cities[1])->wSoFar;
-//        }
-//        if(getNode(head,cities[1])->firstEdge == NULL){
-//            min2 = INT_MAX;
-//        } else{
-//            dijsktra(head,cities[1]);
-//            min2 = getNode(head,cities[0])->wSoFar;
-//        }
-//        if(min1 == INT_MAX){
-//            printf("TSP shortest path: %d \n",min2);
-//            return;
-//        }
-//        if(min2 == INT_MAX){
-//            printf("TSP shortest path: %d \n",min1);
-//            return;
-//        }
-//        if (min1<min2){
-//            printf("TSP shortest path: %d \n",min1);
-//            return;
-//        }
-//        else{
-//            printf("TSP shortest path: %d \n",min2);
-//            return;
-//        }
-//    }
     int ans[(int)numOfCities-48];
     int totalWeight = permute(cities,0,(int)numOfCities-48-1,(int)numOfCities-48,1000000,head,ans);
     if(totalWeight == 1000000){
