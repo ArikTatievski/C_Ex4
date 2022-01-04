@@ -27,12 +27,14 @@ void edgeAddToList(pNode src, int weight, int dest){
     if (e==NULL){
         pEdge curr = newEdge(weight,dest);
         src->firstEdge = curr;
+        printf("Edge %d->%d created\n",src->id,dest);
         return;
     }
     while (e->next){
         e = e->next;
     }
     pEdge curr = newEdge(weight,dest);
+    printf("Edge %d->%d created\n",src->id,dest);
     e->next = curr;
 }
 
@@ -42,6 +44,7 @@ void removeEdgeFromList(pNode src,int dest){
         src->firstEdge = e->next;
         free(e);
         e = NULL;
+        printf("Edge %d->%d removed\n",src->id,dest);
         return;
     }
     while(e->next){
@@ -49,6 +52,7 @@ void removeEdgeFromList(pNode src,int dest){
             pEdge temp = e->next;
             e->next = temp->next;
             free(temp);
+            printf("Edge %d->%d removed\n",src->id,dest);
             temp = NULL;
             return;
         }

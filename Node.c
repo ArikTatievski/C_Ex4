@@ -10,6 +10,7 @@ pNode newNode(int id, pNode next){
     p->firstEdge = NULL;
     p->wSoFar = 0;
     p->father = NULL;
+    printf("Node %d created\n",p->id);
     return p;
 }
 
@@ -50,7 +51,10 @@ void removeNodeFromList(pNode head,int key){
                 removeEdgeFromList(temp,e->dest);
                 e=e->next;
             }
+            temp->father=NULL;
+            free(temp);
             head->next=NULL;
+            printf("Node %d removed\n",key);
             return;
         }
         else{
@@ -59,7 +63,9 @@ void removeNodeFromList(pNode head,int key){
                 removeEdgeFromList(temp,e->dest);
             }
             head->next=temp->next;
+            temp->father = NULL;
             free(temp);
+            printf("Node %d removed\n",key);
             temp = NULL;
             return;
         }
@@ -72,7 +78,9 @@ void removeNodeFromList(pNode head,int key){
                     removeEdgeFromList(checker,e->dest);
                 }
                 temp->next=checker->next;
+                checker->father = NULL;
                 free(checker);
+                printf("Node %d removed\n",key);
                 checker = NULL;
                 return;
             }

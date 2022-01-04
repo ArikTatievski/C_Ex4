@@ -90,6 +90,7 @@ void dijsktra (pNode head,int key){
         return;
     }
     pQueue queue=createPriortyQueue(); // create a priority queue
+    printf("Queue created\n");
     pNode temp = head->next;
     while (temp!=NULL){
         if (temp->id==key){
@@ -118,6 +119,7 @@ void dijsktra (pNode head,int key){
         }
     }
     free(queue);
+    printf("Queue removed\n");
     queue = NULL;
     return;
 }

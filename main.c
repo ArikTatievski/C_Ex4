@@ -41,5 +41,6 @@ int main() {
         delNode = curr;
     }
     free(graph);
+    graph=NULL;
     return 0;
 }
