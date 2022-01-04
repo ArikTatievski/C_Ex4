@@ -41,6 +41,7 @@ void removeEdgeFromList(pNode src,int dest){
     if(e->dest == dest){
         src->firstEdge = e->next;
         free(e);
+        e = NULL;
         return;
     }
     while(e->next){
@@ -48,6 +49,7 @@ void removeEdgeFromList(pNode src,int dest){
             pEdge temp = e->next;
             e->next = temp->next;
             free(temp);
+            temp = NULL;
             return;
         }
         e=e->next;

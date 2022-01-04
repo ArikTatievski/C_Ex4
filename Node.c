@@ -55,6 +55,7 @@ void removeNodeFromList(pNode head,int key){
             }
             head->next=temp->next;
             free(temp);
+            temp = NULL;
             return;
         }
     } else{
@@ -67,6 +68,7 @@ void removeNodeFromList(pNode head,int key){
                 }
                 temp->next=checker->next;
                 free(checker);
+                checker = NULL;
                 return;
             }
             temp=temp->next;

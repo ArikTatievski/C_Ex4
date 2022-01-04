@@ -7,9 +7,9 @@
 int main() {
     pNode graph = newNode(-1,NULL);
     char ch;
-    while(scanf("%c",&ch) != EOF){
-        while(1){
-            if(ch == 'A'){
+    while (scanf(" %c",&ch) != EOF){
+        while (1){
+            if(ch=='A'){
                 ch = build_graph_cmd(graph);
                 continue;
             }
@@ -28,11 +28,11 @@ int main() {
             if(ch == 'T') {
                 TSP_cmd(graph);
                 break;
-            }
-            else{
+            } else{
                 break;
             }
         }
+
     }
     deleteGraph_cmd(graph);
     free(graph);
