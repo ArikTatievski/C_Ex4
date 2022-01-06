@@ -47,10 +47,12 @@ void removeNodeFromList(pNode head,int key){
         if (temp->next == NULL){
             pEdge e = temp->firstEdge;
             while (e){
+                pEdge tempor = e->next;
                 removeEdgeFromList(temp,e->dest);
-                e=e->next;
+                e=tempor;
             }
             temp->father=NULL;
+            temp->next = NULL;
             free(temp);
             head->next=NULL;
             return;
@@ -62,6 +64,7 @@ void removeNodeFromList(pNode head,int key){
             }
             head->next=temp->next;
             temp->father = NULL;
+            temp->next = NULL;
             free(temp);
             temp = NULL;
             return;
@@ -76,6 +79,7 @@ void removeNodeFromList(pNode head,int key){
                 }
                 temp->next=checker->next;
                 checker->father = NULL;
+                checker->next = NULL;
                 free(checker);
                 checker = NULL;
                 return;
@@ -90,10 +94,17 @@ void removeOutEdges(pNode head,int key){
     while(p){
         pEdge e = p->firstEdge;
         while(e){
+            pNode temp = e->next;
             if(e->dest == key){
+                pEdge temp = e->next;
                 removeEdgeFromList(p,key);
             }
-            e=e->next;
+            if(temp == NULL){
+                break;
+            }
+            else{
+                e=temp;
+            }
         }
         p=p->next;
     }

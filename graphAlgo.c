@@ -7,12 +7,21 @@
 #include "PriorityQueue.h"
 
 void deleteGraph_cmd(pNode head){
+    if(head->next == NULL){
+        return;
+    }
     pNode p = head->next;
     while(p){
         int key = p->id;
+        pNode temp = p->next;
         removeNodeFromList(head,key);
         removeOutEdges(head,key);
-        p=p->next;
+        if (temp == NULL){
+            return;
+        }
+        else{
+            p=temp;
+        }
     }
 }
 
